@@ -4,7 +4,6 @@ import os
 from flask import Flask, render_template
 from flask_restful import Resource, Api
 
-from settings import STATIC_PATH
 
 class CustomFlask(Flask):
     jinja_options = Flask.jinja_options.copy()
