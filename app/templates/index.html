@@ -1,0 +1,47 @@
+<script src="https://unpkg.com/vue"></script>
+<head></head>
+
+<body>
+  <div id="search-app">
+    <input v-on:keyup.enter="doSearch" v-model="searchInput">
+    <div>
+      <button v-on:click="doSearch">Search</button>
+    </div>
+    <div id="news-list">
+      <div v-for="article in articles">
+        <h1>{{ article.title }}</h1> ( {{article.date}} )
+      </div>
+    </div>
+  </div>
+</body>
+
+
+<script>
+  var vm = new Vue({
+    // options
+    el: "#search-app",
+    data: {
+      searchInput: '',
+      articles: []
+    },
+    methods: {
+      doSearch: function () {
+        console.log(this.searchInput);
+        this.articles = [
+          {
+            title: '1st article title',
+            description: '1st description',
+            url: 'http://elpais.com/abcde',
+            date: '2017-08-03'
+          },
+          {
+            title: '2nd article title',
+            description: '2nd description',
+            url: 'http://elpais.com/abcde',
+            date: '2017-08-01'
+          },
+        ]
+      }
+    }
+  })
+</script>
