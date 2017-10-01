@@ -1,4 +1,4 @@
-<script src="https://unpkg.com/vue"></script>
+
 <head></head>
 
 <body>
@@ -15,7 +15,8 @@
   </div>
 </body>
 
-
+<script src="https://unpkg.com/vue"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script>
   var vm = new Vue({
     // options
@@ -26,21 +27,15 @@
     },
     methods: {
       doSearch: function () {
+        var self = this;
         console.log(this.searchInput);
-        this.articles = [
-          {
-            title: '1st article title',
-            description: '1st description',
-            url: 'http://elpais.com/abcde',
-            date: '2017-08-03'
-          },
-          {
-            title: '2nd article title',
-            description: '2nd description',
-            url: 'http://elpais.com/abcde',
-            date: '2017-08-01'
-          },
-        ]
+        axios.get('/api/articles')
+          .then(function (response) {
+            self.articles = response.data
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
       }
     }
   })

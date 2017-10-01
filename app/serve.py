@@ -18,7 +18,6 @@ class CustomFlask(Flask):
     ))
 app = CustomFlask(__name__)
 
-
 @app.route('/')
 def index():
     index_path = 'index.html'
@@ -27,7 +26,26 @@ def index():
 api = Api(app)
 class Article(Resource):
     def get(self):
-        return {'hello': 'world'}
+        return [
+            {
+                'title': '1st article title',
+                'description': '1st description',
+                'url': 'http://elpais.com/abcde',
+                'date': '2017-08-03'
+            },
+            {
+                'title': '2nd article title',
+                'description': '2nd description',
+                'url': 'http://elpais.com/abcde',
+                'date': '2017-08-01'
+            },
+            {
+                'title': '3rd article title',
+                'description': '3rd description',
+                'url': 'http://elpais.com/abcde',
+                'date': '2017-08-03'
+            }
+        ]
 
 api.add_resource(Article, '/api/articles')
 
